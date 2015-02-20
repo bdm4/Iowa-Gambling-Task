@@ -1,0 +1,49 @@
+﻿body { background: #006600; }	
+		
+        figure a img {
+             border: 2px solid black;
+             border-radius: 15px;
+        }
+
+        figure a img:hover {
+             border: 2px solid #00BB00;
+        }       
+        #cashpilelabel { font-weight: 600; color: #FFF; margin-bottom:0; margin-top: 10px; }
+        #testresult { word-wrap: break-word;}
+        #viewresultsbtn {margin: 5px 0;}
+        #emailresults { line-height: 42px; height: 42px; }
+		figcaption { font-size: 16px; text-align: center; color: #FFF;}	
+		.row { margin: 0 15px; }
+        .spinner { height: 18px; width: 18px; }
+		#gamelog { 
+            width: 100%;
+            background: #fff;             
+            padding: 6px 5px;
+            box-shadow: 0px 0px 6px 2px #00BB00;
+            -webkit-box-shadow: 0px 0px 6px 2px #00BB00;
+            -moz-box-shadow: 0px 0px 6px 2px #00BB00;
+            -o-box-shadow: 0px 0px 6px 2px #00BB00;
+            border-radius: 3px;              
+		}
+        .progress {
+             box-shadow: 0px 0px 6px 2px #00BB00;
+            -webkit-box-shadow: 0px 0px 6px 2px #00BB00;
+            -moz-box-shadow: 0px 0px 6px 2px #00BB00;
+            -o-box-shadow: 0px 0px 6px 2px #00BB00;
+        }
+
+
+        #gamelog p {border-bottom: 1px solid #AEAEAE;}
+		
+        /* Phone Sizes*/
+		@media (max-width: 480px) {	            
+            figure a img {
+                 border: 1px solid black;
+                 border-radius: 5px;
+            }        
+            figure a img:hover {
+                 border: 1px solid #00BB00;
+            }
+            .row { margin: 0; }
+            figcaption { font-size: 12px; font-weight: 600; }	
+		}	
