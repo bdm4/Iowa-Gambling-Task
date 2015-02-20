@@ -5,7 +5,10 @@ Demo: http://margevici.us/projects/igt/
 
 Note: You can set the email by adding a line in the URL. 
 http://margevici.us/projects/igt/index.html?email_results_to=<YOUREMAIL@ADDRESS.COM>
- 
+
+Sauce: 
+Bechara A., Damasio A. R., Damasio H., Anderson S. W. (1994). Insensitivity to future consequences following damage to human prefrontal cortex. Cognition, 50, 7-15 
+
 The MIT License (MIT)
 
 Copyright (c) 2015
