@@ -1,7 +1,11 @@
 # Iowa-Gambling-Task
 My implementation of the Iowa Gambling Task. You can have your way with it. Just give me some credit or a beer.
 Paypal: bdm4@po.cwru.edu
+Demo: http://margevici.us/projects/igt/
 
+Note: You can set the email by adding a line in the URL. 
+http://margevici.us/projects/igt/index.html?email_results_to=<YOUREMAIL@ADDRESS.COM>
+ 
 The MIT License (MIT)
 
 Copyright (c) 2015
