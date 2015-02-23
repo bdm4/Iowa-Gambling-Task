@@ -1,8 +1,12 @@
-﻿/* IOWA Gambling Task Version 0.15 
+﻿/* IOWA Gambling Task Version 0.16 
 BY:  Ben Margevicius, ben@margevici.us
-Usage: if you add "?email_results_to=you@somedomain.com in the query string
-you don't have to have the person type in the email address at the end of the game.
-You can bookmark http://margevici.us/projects/igt/index.html?email_results_to=you@somewhere.com and create a shortcut
+Usage: if you add ?email_results_to=you@somedomain.com in the query string
+	   if you add ?mail_subject=subject for the email like study id it might be useful here.
+EX: http://margevici.us/projects/igt/index.html?email_results_to=test@yahoo.com&mail_subject=A1234B4567
+You don't have to do both.
+http://margevici.us/projects/igt/index.html?email_results_to=test@yahoo.com
+
+You can bookmark http://margevici.us/projects/igt/index.html?email_results_to=you@somewhere.com and create a shortcut for your subjects.
 
 Please donate to the beer fund paypal: bdm4@po.cwru.edu
 
@@ -41,9 +45,10 @@ var totalcash = 2000, //cash in the cash pile
         netgain = 0,   //netgain store fpr display
         email_address = '', //where to email the data to?
         mail_attachment = '', //the results of the test that gets emailed.
-        mailsvc_url = '/MailSvc/MailSvc.asmx/SendMail' //Email Service. CORS is disabled so I hope this isn't exploitable.
-        GAME_VERSION = "0.15",
-        GAME_VERSION_DATE = new Date("February 19, 2015 19:11:00"),    
+        mail_subject = 'IGT data',
+		mailsvc_url = '/MailSvc/MailSvc.asmx/SendMail' //Email Service. CORS is disabled so I hope this isn't exploitable.
+        GAME_VERSION = "0.16",
+        GAME_VERSION_DATE = new Date("February 23, 2015 01:44:00"),    
         DECKA_WIN = 100, //how much did we win on Deck A click
         DECKB_WIN = 100, //how much did we win on Deck B click
         DECKC_WIN = 50, //how much did we win on Deck C click
@@ -72,21 +77,34 @@ $(function () {
     $("#testresults").hide();
     $(".spinner").hide();    
     $("#emailResultsTo").val(getParameterByName('email_results_to')); //get the query string value for auto address filling :)
+	$("#subjectID").val(getParameterByName('mail_subject')); //get the query strung for the subject for the email. 
+	
     $('#modal-splash').modal('show'); //show the instructions modal on first load
 
     $("#emailBtn").click(function () {
-        email_address = $("#emailResultsTo").val();
-
+        email_address = $("#emailResultsTo").val();			
+		if($("#subjectID").val() !== "") mail_subject = $("#subjectID").val();
+		
         if (email_address.length && mail_attachment.length) { //if there is no email address or data to post then don't do it.
             $.ajax({
                 type: 'POST',
                 contentType: "application/json; charset=utf-8",
                 url: mailsvc_url,
-                data: "{ to:" + JSON.stringify(email_address) + ", attachdata: " + JSON.stringify(mail_attachment) + "}",
+                data: "{ to:" + JSON.stringify(email_address) + 
+					  ", subject: " + JSON.stringify(mail_subject) +
+					  ", attachdata: " + JSON.stringify(mail_attachment) + "}",
                 dataType: "json",
-                success: function (xml, status, jqxhr) {
-                    $(".spinner").hide();                   
-                    $("#emailresultstxt").html("Success!");
+                success: function (data, status, jqxhr) {
+					var d = (data.d) ? data.d : data;
+					$(".spinner").hide();    
+					if(d.isError) 
+					{
+						console.error(d.LongWindedDrawnOutReason);
+					}
+					else
+					{						               
+						$("#emailresultstxt").html(d.Response);					
+					}
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     $("#emailresultstxt").html("Error.");

@@ -144,9 +144,11 @@
 					<div>
 						<p>Your test is complete. </p>
                         <form>
-						    <label for="emailResultsTo">Where should I send the results to?</label>
+						    <label for="subjectID">Please enter your ID (optional)</label>
+							<input type="text" id="subjectID" class="form-control" placeholder="Subject ID (optional)">
+							<label for="emailResultsTo">Where should I send the results to?</label>
 						    <div class="input-group">							
-							    <input type="text" id="emailResultsTo" class="form-control" placeholder="someone@somewhere.com">
+							    <input type="email" id="emailResultsTo" class="form-control" placeholder="someone@somewhere.com">
 							    <span class="input-group-btn">
 								    <button id="emailBtn" class="btn btn-default" type="button"><span id="emailresultstxt">Email</span><img class="spinner" src="spinner.gif" alt="Waiting for email response" /></button>
 							    </span>
@@ -175,6 +177,6 @@
 <!--<![endif]-->
 <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<script type="text/javascript" src="igt.015.min.js"></script>
+<script type="text/javascript" src="igt.016.min.js"></script>
 </body>
 </html>
